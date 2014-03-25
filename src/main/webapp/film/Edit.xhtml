@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditFilmTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditFilmLabel_filmId}" for="filmId" />
+                    <h:inputText id="filmId" value="#{filmController.selected.filmId}" title="#{bundle.EditFilmTitle_filmId}" required="true" requiredMessage="#{bundle.EditFilmRequiredMessage_filmId}"/>
+                    <h:outputLabel value="#{bundle.EditFilmLabel_title}" for="title" />
+                    <h:inputText id="title" value="#{filmController.selected.title}" title="#{bundle.EditFilmTitle_title}" required="true" requiredMessage="#{bundle.EditFilmRequiredMessage_title}"/>
+                    <h:outputLabel value="#{bundle.EditFilmLabel_description}" for="description" />
+                    <h:inputTextarea rows="4" cols="30" id="description" value="#{filmController.selected.description}" title="#{bundle.EditFilmTitle_description}" />
+                    <h:outputLabel value="#{bundle.EditFilmLabel_releaseYear}" for="releaseYear" />
+                    <h:inputText id="releaseYear" value="#{filmController.selected.releaseYear}" title="#{bundle.EditFilmTitle_releaseYear}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditFilmLabel_rentalDuration}" for="rentalDuration" />
+                    <h:inputText id="rentalDuration" value="#{filmController.selected.rentalDuration}" title="#{bundle.EditFilmTitle_rentalDuration}" required="true" requiredMessage="#{bundle.EditFilmRequiredMessage_rentalDuration}"/>
+                    <h:outputLabel value="#{bundle.EditFilmLabel_rentalRate}" for="rentalRate" />
+                    <h:inputText id="rentalRate" value="#{filmController.selected.rentalRate}" title="#{bundle.EditFilmTitle_rentalRate}" required="true" requiredMessage="#{bundle.EditFilmRequiredMessage_rentalRate}"/>
+                    <h:outputLabel value="#{bundle.EditFilmLabel_length}" for="length" />
+                    <h:inputText id="length" value="#{filmController.selected.length}" title="#{bundle.EditFilmTitle_length}" />
+                    <h:outputLabel value="#{bundle.EditFilmLabel_replacementCost}" for="replacementCost" />
+                    <h:inputText id="replacementCost" value="#{filmController.selected.replacementCost}" title="#{bundle.EditFilmTitle_replacementCost}" required="true" requiredMessage="#{bundle.EditFilmRequiredMessage_replacementCost}"/>
+                    <h:outputLabel value="#{bundle.EditFilmLabel_rating}" for="rating" />
+                    <h:inputText id="rating" value="#{filmController.selected.rating}" title="#{bundle.EditFilmTitle_rating}" />
+                    <h:outputLabel value="#{bundle.EditFilmLabel_specialFeatures}" for="specialFeatures" />
+                    <h:inputText id="specialFeatures" value="#{filmController.selected.specialFeatures}" title="#{bundle.EditFilmTitle_specialFeatures}" />
+                    <h:outputLabel value="#{bundle.EditFilmLabel_lastUpdate}" for="lastUpdate" />
+                    <h:inputText id="lastUpdate" value="#{filmController.selected.lastUpdate}" title="#{bundle.EditFilmTitle_lastUpdate}" required="true" requiredMessage="#{bundle.EditFilmRequiredMessage_lastUpdate}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditFilmLabel_originalLanguageId}" for="originalLanguageId" />
+                    <h:selectOneMenu id="originalLanguageId" value="#{filmController.selected.originalLanguageId}" title="#{bundle.EditFilmTitle_originalLanguageId}" >
+                        <f:selectItems value="#{languageController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditFilmLabel_languageId}" for="languageId" />
+                    <h:selectOneMenu id="languageId" value="#{filmController.selected.languageId}" title="#{bundle.EditFilmTitle_languageId}" required="true" requiredMessage="#{bundle.EditFilmRequiredMessage_languageId}">
+                        <f:selectItems value="#{languageController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{filmController.update}" value="#{bundle.EditFilmSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditFilmViewLink}"/>
+                <br />
+                <h:commandLink action="#{filmController.prepareList}" value="#{bundle.EditFilmShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditFilmIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
