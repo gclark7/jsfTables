@@ -16,30 +16,26 @@
 
             <ui:define name="body">
                 <h:form>
-                    <p:dataTable var="actor" value="#{actorController.items}">
+                    <p:dataTable id="tblActors" var="actor" value="#{actorController.items}" editable="true" editMode="cell" widgetVar="actorTable">
                         <p:column sortBy="actorId" headerText="Actor ID">
-                            <!--f:facet name="header">
-                                <p:outputLabel value="Actor ID"></p:outputLabel>
-                            </f:facet-->
+                            
+                            
                             <p:outputLabel value="#{actor.actorId}"/>
                         </p:column>
 
                         <p:column sortBy="firstName" headerText="First Name">
-                            <!--f:facet name="header">
-                                <p:outputLabel value="First Name"></p:outputLabel>
-                            </f:facet-->
-                            <p:outputLabel value="#{actor.firstName}"/>
+                            <p:cellEditor>
+                                <f:facet name="input"><p:inputText value="#{actor.firstName}" style="width:96%" label="First Name"/></f:facet>
+                                <f:facet name="output"><p:outputLabel value="#{actor.firstName}"/></f:facet>
+                            </p:cellEditor>
                         </p:column>
                         <p:column sortBy="lastName" headerText="Last Name">
-                            <!--f:facet name="header">
-                                <p:outputLabel value="Last Name"></p:outputLabel>
-                            </f:facet-->
-                            <p:outputLabel value="#{actor.lastName}"/>
+                             <p:cellEditor>
+                                <f:facet name="input"><p:inputText value="#{actor.lastName}" style="width:96%" label="Last Name"/></f:facet>
+                                <f:facet name="output"><p:outputLabel value="#{actor.lastName}"/></f:facet>
+                             </p:cellEditor>
                         </p:column>
                         <p:column sortBy="lastUpdate" headerText="Last Work">
-                            <!--f:facet name="header">
-                                <p:outputLabel value="Last Work"></p:outputLabel>
-                            </f:facet-->
                             <p:outputLabel value="#{actor.lastUpdate}"/>
                         </p:column>
                     </p:dataTable>
